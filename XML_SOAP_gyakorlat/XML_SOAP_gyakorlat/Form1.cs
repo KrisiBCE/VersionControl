@@ -25,6 +25,7 @@ namespace XML_SOAP_gyakorlat
 
             Start();
             XML_process(Start());
+            Display();
         }
 
         private string Start()
@@ -51,6 +52,32 @@ namespace XML_SOAP_gyakorlat
             XmlDocument xml = new XmlDocument();
 
             xml.LoadXml(result);
+
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                var rate = new RateData();
+
+                
+
+                rate.Date = DateTime.Parse(element.GetAttribute("date"));
+
+                var childElement = (XmlElement)element.ChildNodes[0];
+                rate.Currency = childElement.GetAttribute("curr");
+
+                var unit = decimal.Parse(childElement.GetAttribute("unit"));
+                var value = decimal.Parse(childElement.InnerText);
+
+                if (unit != 0)
+                {
+                    rate.Value = value / unit;
+                }
+
+                Rates.Add(rate);
+            }
+        }
+
+        private void Display()
+        {
 
         }
     }
