@@ -25,9 +25,7 @@ namespace XML_SOAP_gyakorlat
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
 
-            Start();
-            XML_process(Start());
-            Display();
+            RefreshData();
         }
 
         private string Start()
@@ -47,7 +45,6 @@ namespace XML_SOAP_gyakorlat
 
             return result;
         }
-
 
         private void XML_process(string result)
         {
@@ -95,6 +92,32 @@ namespace XML_SOAP_gyakorlat
             chartArea.AxisY.MajorGrid.Enabled = false;
 
             chartArea.AxisY.IsStartedFromZero = false;
+        }
+
+        private void RefreshData()
+        {
+            Rates.Clear();
+
+            Start();
+            XML_process(Start());
+            Display();
+        }
+
+
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
