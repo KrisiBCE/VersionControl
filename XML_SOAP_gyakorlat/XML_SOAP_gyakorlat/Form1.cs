@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using XML_SOAP_gyakorlat.MnbServiceReference;
 using XML_SOAP_gyakorlat.Entities;
 using System.Xml;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace XML_SOAP_gyakorlat
 {
@@ -22,6 +23,7 @@ namespace XML_SOAP_gyakorlat
             InitializeComponent();
 
             dataGridView1.DataSource = Rates;
+            chartRateData.DataSource = Rates;
 
             Start();
             XML_process(Start());
@@ -78,7 +80,21 @@ namespace XML_SOAP_gyakorlat
 
         private void Display()
         {
+            var series = chartRateData.Series[0];
 
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+
+            chartArea.AxisY.IsStartedFromZero = false;
         }
     }
 }
