@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using XML_SOAP_gyakorlat.MnbServiceReference;
 using XML_SOAP_gyakorlat.Entities;
+using System.Xml;
 
 namespace XML_SOAP_gyakorlat
 {
@@ -21,10 +22,12 @@ namespace XML_SOAP_gyakorlat
             InitializeComponent();
 
             dataGridView1.DataSource = Rates;
+
             Start();
+            XML_process(Start());
         }
 
-        private void Start()
+        private string Start()
         {
             var mnbService = new MNBArfolyamServiceSoapClient();
 
@@ -38,6 +41,17 @@ namespace XML_SOAP_gyakorlat
             var response = mnbService.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
+
+            return result;
+        }
+
+
+        private void XML_process(string result)
+        {
+            XmlDocument xml = new XmlDocument();
+
+            xml.LoadXml(result);
+
         }
     }
 }
