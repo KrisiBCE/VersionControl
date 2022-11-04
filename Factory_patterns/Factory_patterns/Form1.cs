@@ -37,15 +37,31 @@ namespace Factory_patterns
             Ball ball = _factory.CreateNew();
 
             ball.Left -= ball.Width;
+
             _balls.Add(ball);
             mainPanel.Controls.Add(ball);
         }
 
         private void conveyorTimer_Tick(object sender, EventArgs e)
         {
+            var maxPosition = 0;
+
             foreach (var ball in _balls)
             {
                 ball.MoveBall();
+
+                if (ball.Left > maxPosition)
+                {
+                    maxPosition = ball.Left;
+                }
+            }
+
+            if (maxPosition > 1000)
+            {
+                var oldest_ball = _balls[0];
+
+                _balls.Remove(oldest_ball);
+                mainPanel.Controls.Remove(oldest_ball);
             }
         }
     }
