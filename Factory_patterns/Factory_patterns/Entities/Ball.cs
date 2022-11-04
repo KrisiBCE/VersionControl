@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Factory_patterns.Entities
 {
-    class Ball : Label
+    public class Ball : Label
     {
         public Ball()
         {
@@ -30,7 +30,7 @@ namespace Factory_patterns.Entities
         }
 
 
-        private void MoveBall()
+        public void MoveBall()
         {
             Left += 1;
         }

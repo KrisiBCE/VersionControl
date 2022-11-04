@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Factory_patterns.Entities
 {
-    class BallFactory
+    public class BallFactory
     {
+        public Ball CreateNew()
+        {
+            return new Ball();
+        }
     }
 }
