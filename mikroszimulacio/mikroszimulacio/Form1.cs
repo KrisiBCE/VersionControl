@@ -24,7 +24,7 @@ namespace mikroszimulacio
 
             Population = Load_Population("C:\\Temp\\nép-teszt.csv");
             BirthProbabilities = Load_Birth_Probabilities("C:\\Temp\\születés.csv");
-            DeathProbabilities = Load_Death_Probabilities("C:\\Temp\\halál");
+            DeathProbabilities = Load_Death_Probabilities("C:\\Temp\\halál.csv");
         }
 
         private List<Person> Load_Population(string filePath)
