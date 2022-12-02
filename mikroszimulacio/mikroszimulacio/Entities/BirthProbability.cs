@@ -12,6 +12,6 @@ namespace mikroszimulacio.Entities
 
         public int Child_count { get; set; }
 
-        public int Probability { get; set; }
+        public decimal Probability { get; set; }
     }
 }
