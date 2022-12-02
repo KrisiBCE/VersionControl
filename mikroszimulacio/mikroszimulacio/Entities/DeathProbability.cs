@@ -12,6 +12,6 @@ namespace mikroszimulacio.Entities
 
         public int Age { get; set; }
 
-        public decimal Probability { get; set; }
+        public double Probability { get; set; }
     }
 }
